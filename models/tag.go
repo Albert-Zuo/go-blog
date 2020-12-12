@@ -71,6 +71,12 @@ func EditTag(id int, data interface {}) bool {
 	return true
 }
 
+// CleanAllTag CleanAllTag
+func CleanAllTag() bool {
+	db.Unscoped().Where("deleted_on != ? ", 0).Delete(&Tag{})
+
+	return true
+}
 
 
 
