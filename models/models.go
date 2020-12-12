@@ -53,7 +53,7 @@ func init() {
 	db.DB().SetMaxOpenConns(100)
 }
 
-
+// CloseDB 关闭数据库连接，释放系统资源
 func CloseDB() {
 	defer db.Close()
 }
