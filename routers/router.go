@@ -1,10 +1,10 @@
 package routers
 
 import (
+	_ "github.com/Albert/go-gin-example/docs"
 	"github.com/Albert/go-gin-example/middleware/jwt"
 	"github.com/Albert/go-gin-example/pkg/setting"
 	"github.com/Albert/go-gin-example/routers/api"
-	_ "github.com/Albert/go-gin-example/docs"
 	v1 "github.com/Albert/go-gin-example/routers/api/v1"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
