@@ -4,11 +4,14 @@ import (
 	"github.com/Albert/go-gin-example/middleware/jwt"
 	"github.com/Albert/go-gin-example/pkg/setting"
 	"github.com/Albert/go-gin-example/routers/api"
+	_ "github.com/Albert/go-gin-example/docs"
 	v1 "github.com/Albert/go-gin-example/routers/api/v1"
 	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
-// InitRouter init and config gin engine
+// InitRouter initialize routing information
 func InitRouter() *gin.Engine {
 	r := gin.New()
 
@@ -17,6 +20,7 @@ func InitRouter() *gin.Engine {
 
 	gin.SetMode(setting.RunMode)
 
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.GET("/auth", api.GetAuth)
 
 	apiv1 := r.Group("/api/v1")
