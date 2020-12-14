@@ -1,10 +1,10 @@
 package article_service
 
 import (
-	"github.com/golang/freetype"
 	"github.com/Albert/go-gin-example/pkg/file"
 	"github.com/Albert/go-gin-example/pkg/qrcode"
 	"github.com/Albert/go-gin-example/pkg/setting"
+	"github.com/golang/freetype"
 	"image"
 	"image/draw"
 	"image/jpeg"
