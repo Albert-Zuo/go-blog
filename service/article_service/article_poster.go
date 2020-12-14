@@ -31,11 +31,8 @@ func GetPosterFlag() string {
 }
 
 func (a *ArticlePoster) CheckMergedImage(path string) bool {
-	if file.CheckNotExist(path+a.PosterName) == true {
-		return false
-	}
 
-	return true
+	return !file.CheckNotExist(path+a.PosterName)
 }
 
 func (a *ArticlePoster) OpenMergedImage(path string) (*os.File, error) {
