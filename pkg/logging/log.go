@@ -2,6 +2,7 @@ package logging
 
 import (
 	"fmt"
+	"github.com/Albert/go-gin-example/pkg/file"
 	"log"
 	"os"
 	"path/filepath"
@@ -11,14 +12,12 @@ import (
 type Level int
 
 var (
-	F *os.File
-
+	F                  *os.File
 	DefaultPrefix      = ""
 	DefaultCallerDepth = 2
-
-	logger     *log.Logger
-	logPrefix  = ""
-	levelFlags = []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"}
+	logger             *log.Logger
+	logPrefix          = ""
+	levelFlags         = []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"}
 )
 
 const (
@@ -29,9 +28,15 @@ const (
 	FATAL
 )
 
-func init() {
-	filePath := getLogFileFullPath()
-	F = openLogFile(filePath)
+// Setup initialize the log instance
+func Setup() {
+	var err error
+	filePath := getLogFilePath()
+	fileName := getLogFileName()
+	F, err = file.MustOpen(fileName, filePath)
+	if err != nil {
+		log.Fatalf("logging.Setup err: %v", err)
+	}
 
 	logger = log.New(F, DefaultPrefix, log.LstdFlags)
 }
